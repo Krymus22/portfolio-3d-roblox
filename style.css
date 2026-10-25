@@ -1,0 +1,542 @@
+:root {
+  --bg: #070708;
+  --ink: #f1eee8;
+  --muted: #cfccc6;
+  --faint: #6d6b67;
+  --line: rgba(241, 238, 232, 0.16);
+  --panel: rgba(255, 255, 255, 0.025);
+  --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --script: 'Pinyon Script', cursive;
+  --wrap: min(1120px, calc(100% - 32px));
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, video, svg { display: block; }
+
+/* page scrollbar: a thin silver pill on the night sky. Chrome, Edge and Safari read the pseudo-elements;
+   Firefox only takes the two colours, so it gets them alone (setting them in Chrome would switch the pill off) */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: rgba(241, 238, 232, 0.28);
+  border: 3px solid var(--bg);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(241, 238, 232, 0.5); }
+
+@supports (-moz-appearance: none) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(241, 238, 232, 0.32) var(--bg);
+  }
+}
+
+a { color: inherit; }
+
+/* ---------------------------------------------------------------- sky and grain behind everything */
+.ceu {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+.grao {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1.2 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.brilho {
+  width: 14px;
+  height: 14px;
+  fill: var(--ink);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
+}
+
+/* ---------------------------------------------------------------- header */
+.topo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 18px max(16px, calc((100% - 1120px) / 2));
+  transition: background 0.4s, border-color 0.4s;
+  border-bottom: 1px solid transparent;
+}
+
+.topo.solido {
+  background: rgba(7, 7, 8, 0.92);
+  backdrop-filter: blur(10px);
+  border-color: var(--line);
+}
+
+.assinatura {
+  font-family: var(--script);
+  font-size: 30px;
+  line-height: 1;
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.menu {
+  display: flex;
+  gap: 28px;
+}
+
+.menu a {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.menu a:hover { color: var(--ink); }
+
+.lang-switch {
+  display: flex;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(7, 7, 8, 0.6);
+}
+
+.lang-btn {
+  padding: 5px 11px 5px 13px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.lang-btn:hover { color: var(--ink); }
+
+.lang-btn.active {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* ---------------------------------------------------------------- opening */
+.abertura {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 110px 16px 0;
+}
+
+.titulo {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+  margin-top: -14vh;
+}
+
+/* a dark halo behind the title keeps it readable wherever the cloud tops reach */
+.titulo::before {
+  content: "";
+  position: absolute;
+  inset: -40% -30%;
+  z-index: -1;
+  background: radial-gradient(closest-side, rgba(7, 7, 8, 0.92), rgba(7, 7, 8, 0.7) 55%, transparent);
+  pointer-events: none;
+}
+
+.aro {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(560px, 86vw);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border: 1px solid rgba(241, 238, 232, 0.12);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.aro::after {
+  content: "";
+  position: absolute;
+  inset: 22px;
+  border: 1px solid rgba(241, 238, 232, 0.06);
+  border-radius: 50%;
+}
+
+.titulo h1 {
+  margin: 0;
+  font-weight: 300;
+  line-height: 0.9;
+}
+
+.nome {
+  display: block;
+  font-size: clamp(96px, 19vw, 230px);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.18);
+}
+
+.cursiva {
+  display: block;
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(48px, 8.4vw, 110px);
+  line-height: 1;
+  margin-top: -0.1em;
+  text-transform: none;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.22);
+}
+
+.faixa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 26px 0 0;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-shadow: 0 0 6px #000, 0 0 16px #000;
+}
+
+.faixa::before,
+.faixa::after {
+  content: "";
+  width: clamp(28px, 6vw, 70px);
+  height: 1px;
+  background: var(--line);
+}
+
+.lateral {
+  position: absolute;
+  top: 34%;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 2;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+  z-index: 2;
+  text-shadow: 0 0 6px #000, 0 0 16px #000;
+}
+
+.lateral.esquerda { left: max(16px, calc((100% - 1120px) / 2)); }
+.lateral.direita { right: max(16px, calc((100% - 1120px) / 2)); text-align: right; }
+
+.nuvens {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 48%;
+  object-fit: cover;
+  object-position: 50% 100%;
+  z-index: 1;
+  /* fades in at the cloud tops and out again at the bottom, so the bank sinks into the dark below it */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 58%, rgba(0, 0, 0, 0.35) 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 58%, rgba(0, 0, 0, 0.35) 82%, transparent 100%);
+  pointer-events: none;
+}
+
+.abertura .brilho {
+  position: absolute;
+  z-index: 2;
+  animation: piscar 5s ease-in-out infinite;
+}
+
+.b1 { top: 22%; left: 24%; width: 22px; height: 22px; }
+.b2 { top: 16%; right: 27%; width: 12px; height: 12px; animation-delay: -1.6s !important; }
+.b3 { top: 60%; left: 8%; width: 10px; height: 10px; animation-delay: -3.1s !important; }
+/* b3 and b4 sit below the side notes (top 34% to about 48%), never on their letters */
+.b4 { top: 56%; right: 9%; width: 18px; height: 18px; animation-delay: -2.2s !important; }
+
+@keyframes piscar {
+  0%, 100% { opacity: 1; scale: 1; }
+  50% { opacity: 0.35; scale: 0.7; }
+}
+
+/* ---------------------------------------------------------------- sections */
+.secao {
+  width: var(--wrap);
+  margin: 0 auto;
+  padding: 120px 0 40px;
+}
+
+.cabeca {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.ornamento {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 0 0 14px;
+}
+
+.ornamento::before,
+.ornamento::after {
+  content: "";
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(to var(--lado, right), transparent, var(--line));
+}
+
+.ornamento::after { --lado: left; }
+
+.secao h2 {
+  margin: 0;
+  font-weight: 300;
+  font-size: clamp(38px, 5vw, 56px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+/* ---------------------------------------------------------------- work grid */
+.grade {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.peca {
+  margin: 0;
+}
+
+.midia {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 999px 999px 18px 18px;
+  background: #0b0b0c;
+}
+
+.midia video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 0.6s ease;
+}
+
+.peca:hover .midia video { scale: 1.03; }
+
+.peca figcaption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 18px 0 0;
+  text-align: center;
+}
+
+.peca-nome {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.peca-tipo {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------------------------- about */
+.sobre {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 64px;
+}
+
+.medalha {
+  position: relative;
+  width: min(420px, 100%);
+  aspect-ratio: 1;
+  justify-self: center;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  padding: 18px;
+}
+
+.medalha img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid rgba(241, 238, 232, 0.08);
+}
+
+.medalha .brilho {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+
+.m1 { top: -10px; left: 50%; translate: -50% 0; }
+.m2 { bottom: -10px; left: 50%; translate: -50% 0; width: 14px !important; height: 14px !important; }
+
+.sobre-texto h2 { margin-bottom: 24px; }
+
+.sobre-texto p {
+  margin: 0 0 16px;
+  font-size: 23px;
+  font-weight: 500;
+  color: #ebe8e2;
+  max-width: 34ch;
+}
+
+/* ---------------------------------------------------------------- contact and footer */
+.contato {
+  text-align: center;
+  padding-bottom: 60px;
+}
+
+.contato .cabeca { margin-bottom: 18px; }
+
+.contato-texto {
+  margin: 0 auto 34px;
+  color: #ebe8e2;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.contato-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.botao {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 30px 14px 34px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: background 0.25s, color 0.25s;
+}
+
+.botao:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.rodape {
+  position: relative;
+  height: clamp(140px, 14vw, 200px);
+  overflow: hidden;
+}
+
+.nuvens-rodape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 76%;                      /* the lit tops of the bank, not its dark underside */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 18%, #000 65%);
+  mask-image: linear-gradient(to bottom, transparent 18%, #000 65%);
+}
+
+.rodape p {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 12px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-shadow: 0 0 4px #000, 0 0 12px #000, 0 0 24px #000;
+}
+
+.rodape .brilho { width: 10px; height: 10px; }
+
+/* ---------------------------------------------------------------- reveal on scroll */
+.revelar {
+  opacity: 0;
+  translate: 0 24px;
+  transition: opacity 0.9s ease, translate 0.9s ease;
+}
+
+.revelar.visivel {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* ---------------------------------------------------------------- small screens */
+@media (max-width: 760px) {
+  body { font-size: 18px; }
+  .topo { gap: 16px; padding-top: 14px; padding-bottom: 14px; }
+  .menu { display: none; }
+  .lateral { display: none; }
+  .titulo { margin-top: -10vh; }
+  .faixa { letter-spacing: 0.18em; font-size: 14px; gap: 12px; }
+  .nuvens { height: 40%; }
+  .secao { padding-top: 90px; }
+  .grade { grid-template-columns: 1fr; gap: 36px; }
+  .sobre { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .sobre-texto p { margin-left: auto; margin-right: auto; }
+  .ornamento::before, .ornamento::after { width: 56px; }
+}
+
+/* short laptop screens: the cloud bank stays under the title */
+@media (min-width: 761px) and (max-height: 760px) {
+  .nuvens { height: 40%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .abertura .brilho { animation: none; }
+  .revelar { opacity: 1; translate: none; transition: none; }
+}

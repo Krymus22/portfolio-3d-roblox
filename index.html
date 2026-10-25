@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Isa | Artista 3D</title>
+<meta name="description" content="Portfólio de modelagem 3D da Isa: UGC de todo tipo para Roblox.">
+<meta name="theme-color" content="#070708">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=10">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="brilho" viewBox="0 0 24 24">
+    <path d="M12 0C12.6 7.5 16.5 11.4 24 12C16.5 12.6 12.6 16.5 12 24C11.4 16.5 7.5 12.6 0 12C7.5 11.4 11.4 7.5 12 0Z"/>
+  </symbol>
+</svg>
+
+<canvas class="ceu" aria-hidden="true"></canvas>
+<div class="grao" aria-hidden="true"></div>
+
+<header class="topo">
+  <a class="assinatura" href="#inicio">Isa</a>
+  <nav class="menu" aria-label="Seções" data-i18n-aria="aria_sections">
+    <a href="#trabalhos" data-i18n="nav_work">Trabalhos</a>
+    <a href="#sobre" data-i18n="nav_about">Sobre</a>
+    <a href="#contato" data-i18n="nav_contact">Contato</a>
+  </nav>
+  <div class="lang-switch" role="group" aria-label="Idioma">
+    <button type="button" class="lang-btn" data-lang="en">EN</button>
+    <button type="button" class="lang-btn active" data-lang="pt">PT</button>
+  </div>
+</header>
+
+<main>
+  <section id="inicio" class="abertura">
+    <svg class="brilho b1"><use href="#brilho"/></svg>
+    <svg class="brilho b2"><use href="#brilho"/></svg>
+    <svg class="brilho b3"><use href="#brilho"/></svg>
+    <svg class="brilho b4"><use href="#brilho"/></svg>
+
+    <p class="lateral esquerda" data-i18n-html="side_left">Todo tipo<br>de UGC<br>pronto para<br>o catálogo</p>
+    <p class="lateral direita" data-i18n-html="side_right">Aberta a<br>encomendas</p>
+
+    <div class="titulo">
+      <span class="aro" aria-hidden="true"></span>
+      <h1>
+        <span class="nome">Isa</span>
+        <span class="cursiva" data-i18n="hero_script">artista 3D</span>
+      </h1>
+      <p class="faixa"><span data-i18n="hero_line">UGC para Roblox</span></p>
+    </div>
+
+    <img class="nuvens" src="media/nuvens.webp" alt="" width="2560" height="1100">
+  </section>
+
+  <section id="trabalhos" class="secao">
+    <header class="cabeca">
+      <p class="ornamento" aria-hidden="true"><svg class="brilho"><use href="#brilho"/></svg></p>
+      <h2 data-i18n="sec_work">Trabalhos</h2>
+    </header>
+
+    <div class="grade">
+      <figure class="peca">
+        <div class="midia">
+          <video muted loop playsinline preload="none" poster="media/mochila.webp?v=3" aria-label="Mochila de ursinho girando" data-i18n-aria="aria_backpack">
+            <source src="media/mochila.mp4?v=3" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <span class="peca-nome" data-i18n="item_backpack">Mochila de Ursinho</span>
+          <span class="peca-tipo" data-i18n="type_back">Acessório de costas</span>
+        </figcaption>
+      </figure>
+
+      <figure class="peca">
+        <div class="midia">
+          <video muted loop playsinline preload="none" poster="media/tiara.webp" aria-label="Tiara de corações girando" data-i18n-aria="aria_tiara">
+            <source src="media/tiara.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <span class="peca-nome" data-i18n="item_tiara">Tiara de Corações</span>
+          <span class="peca-tipo" data-i18n="type_head">Acessório de cabeça</span>
+        </figcaption>
+      </figure>
+
+      <figure class="peca">
+        <div class="midia">
+          <video muted loop playsinline preload="none" poster="media/photocard-gatinho.webp" aria-label="Porta-photocard de gatinho girando" data-i18n-aria="aria_cat">
+            <source src="media/photocard-gatinho.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <span class="peca-nome" data-i18n="item_cat">Porta-Photocard Gatinho</span>
+          <span class="peca-tipo" data-i18n="type_waist">Acessório de cintura</span>
+        </figcaption>
+      </figure>
+
+      <figure class="peca">
+        <div class="midia">
+          <video muted loop playsinline preload="none" poster="media/photocard-coracao.webp" aria-label="Porta-photocard de coração girando" data-i18n-aria="aria_heart">
+            <source src="media/photocard-coracao.mp4" type="video/mp4">
+          </video>
+        </div>
+        <figcaption>
+          <span class="peca-nome" data-i18n="item_heart">Porta-Photocard Coração</span>
+          <span class="peca-tipo" data-i18n="type_waist">Acessório de cintura</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="sobre" class="secao sobre">
+    <div class="medalha" aria-hidden="true">
+      <svg class="brilho m1"><use href="#brilho"/></svg>
+      <svg class="brilho m2"><use href="#brilho"/></svg>
+      <img src="media/mochila.webp?v=3" alt="" width="960" height="960" loading="lazy">
+    </div>
+    <div class="sobre-texto">
+      <h2 data-i18n="sec_about">Sobre</h2>
+      <p data-i18n="about_1">Oi, eu sou a Isa. Faço qualquer tipo de UGC para Roblox: acessórios, roupas, cabelos e o que mais o avatar precisar.</p>
+      <p data-i18n="about_2">Cada peça sai com textura pronta e no tamanho certo para usar no jogo.</p>
+    </div>
+  </section>
+
+  <section id="contato" class="secao contato">
+    <header class="cabeca">
+      <p class="ornamento" aria-hidden="true"><svg class="brilho"><use href="#brilho"/></svg></p>
+      <h2 data-i18n="sec_contact">Vamos criar juntos?</h2>
+    </header>
+    <p class="contato-texto" data-i18n="contact_text">Me chama para encomendas ou para conversar sobre uma ideia.</p>
+    <div class="contato-links">
+      <a class="botao" href="https://discord.com/users/1493764167809630348" target="_blank" rel="noopener">Discord</a>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <img class="nuvens-rodape" src="media/nuvens.webp" alt="" width="2560" height="1100" loading="lazy">
+  <p><svg class="brilho"><use href="#brilho"/></svg> Isa · 2026 <svg class="brilho"><use href="#brilho"/></svg></p>
+</footer>
+
+<script src="script.js?v=6"></script>
+</body>
+</html>
